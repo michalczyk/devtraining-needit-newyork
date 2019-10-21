@@ -29,7 +29,6 @@
         <role_conditions/>
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 
-	// Add your code here
 	// Instantiate the NeedItUtils class.  Call the isDatePast method and pass 
 	// the u_when_needed value.
 	var niutils = new NeedItUtils();
@@ -41,12 +40,21 @@
 		current.setAbortAction(true);
 	}
 	
-	var today = rightnow.getLocalDate();
-	var istoday = whenNeeded.getLocalDate();
+	//var today = rightnow.getLocalDate();
+	//var istoday = whenNeeded.getLocalDate();
 	// Compare today and istoday to see if they are the same day
-	if(today.compareTo(istoday) == 0){
+	//if(today.compareTo(istoday) == 0){
+		//gs.addErrorMessage("You cannot submit NeedIt requests for today.");
+		//current.setAbortAction(true); }
+	
+	// pass the When needed field value to the isDateToday method in NeedItUtils
+	var isToday = niutils.isDateToday(current.u_when_needed);
+	
+	// if the isDateToday method returns true the When needed date is today 
+	if(isToday == true){
 		gs.addErrorMessage("You cannot submit NeedIt requests for today.");
-		current.setAbortAction(true); }
+		current.setAbortAction(true);
+	}
 	
 
 })(current, previous);]]></script>
@@ -56,7 +64,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>c8dce6a9db6000100cc22706ca961945</sys_id>
-        <sys_mod_count>6</sys_mod_count>
+        <sys_mod_count>8</sys_mod_count>
         <sys_name> NeedIt When needed field date</sys_name>
         <sys_overrides/>
         <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
@@ -64,7 +72,7 @@
         <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
         <sys_update_name>sys_script_c8dce6a9db6000100cc22706ca961945</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-10-17 13:57:55</sys_updated_on>
+        <sys_updated_on>2019-10-21 06:49:28</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>
